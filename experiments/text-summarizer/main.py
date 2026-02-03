@@ -31,7 +31,7 @@ def read_text_from_file(file_path):
         raise FileNotFoundError(f"Could not find input file at: {file_path}")
 
 def create_prompt(user_text):
-    prompt = f"Summarize the following text in a concise manner:\n\n{user_text}\n\nSummary:"
+    prompt = f"Summarize the following text in simple language.\nUse 4-5 bullet points.\nMake it easy for beginners to understand.\n{user_text}\n\nSummary:"
     return prompt
 
 if __name__ == "__main__":
