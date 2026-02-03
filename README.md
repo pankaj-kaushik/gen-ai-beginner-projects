@@ -1,36 +1,67 @@
-# 🧪 genai-labs
+# 🧪 GenAI Labs
 
-**Learn GenAI by building real systems, not just calling APIs.**
+**GenAI Labs** is a personal experimentation playground for learning and exploring **Generative AI use cases** using Python and modern LLMs.
 
-`genai-labs` is a hands-on laboratory for experimenting with **Generative AI system design patterns** such as RAG, agents, prompt engineering, and LLM-powered applications.  
-This repository contains **small, focused GenAI experiments and proof-of-concept projects** built for learning, exploration, and rapid iteration.
+This repository contains **small, focused GenAI experiments**, each living in its own folder, designed to:
+- understand LLM fundamentals
+- learn prompt engineering
+- explore real-world GenAI use cases
+- build intuition before production-grade systems
 
----
-
-## 🎯 Why this repo exists
-
-Most GenAI tutorials stop at:
-- “Call an LLM”
-- “Pass a prompt”
-- “Get an answer”
-
-This repo goes deeper 👇
-
-- How do GenAI systems **actually work end-to-end**?
-- How do we design **scalable, debuggable, and extensible** AI systems?
-- What trade-offs exist between different approaches?
-
-Each experiment in this repo focuses on **one core idea**, explained through **working code**.
+> ⚠️ This repo is **not production-ready**. The goal is learning by building.
 
 ---
 
-## 🧠 What you’ll find here
+## 📂 Repository Structure
 
-- 🔹 Retrieval-Augmented Generation (RAG) experiments  
-- 🔹 Prompt engineering techniques & patterns  
-- 🔹 LLM agents and tool/function calling  
-- 🔹 AI system design patterns  
-- 🔹 Real-world GenAI use cases (career, interviews, education, productivity)
+```text
+genai-labs/
+│
+├── experiments/
+│   ├── text-summarizer/
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── README.md
+│   │
+│   ├── chat-with-pdf/
+│   │   ├── app.py
+│   │   ├── requirements.txt
+│   │   └── README.md
+│   │
+│   └── ...
+│
+├── .env.example
+├── .gitignore
+└── README.md
 
-> ⚠️ Note: These are **labs & experiments**, not production-ready systems.  
-> Mature projects may later be moved into their **own dedicated repositories**.
+**Each experiment:**
+- is self-contained
+- has its own dependencies
+- can be run independently
+
+---
+
+## 🧠 What You’ll Learn from This Repo
+
+By going through these experiments, you will learn:
+
+- How LLMs work at a practical level
+- Prompt design & prompt tuning
+- Using LLM APIs (Gemini / OpenAI / others)
+- Handling tokens, temperature, max output
+- Building GenAI pipelines (input → LLM → output)
+- Using embeddings & vector search (in later labs)
+- Structuring GenAI projects properly
+
+**Perfect for:**
+
+- Beginners in GenAI
+- Software engineers exploring AI
+- System design + GenAI learners
+
+---
+## 🛠 Tech Stack
+Common stack used across experiments:
+- **Language:** Python 3.10+
+- **LLMs:** Google Gemini
+- **Frameworks:** langchain
