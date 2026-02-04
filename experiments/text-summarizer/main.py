@@ -34,17 +34,15 @@ def create_prompt(user_text):
     prompt = f"Summarize the following text in simple language.\nUse 4-5 bullet points.\nMake it easy for beginners to understand.\n{user_text}\n\nSummary:"
     return prompt
 
-if __name__ == "__main__":
-
-    print("Running text summarization example...")
-
+def initialize_environment():
     # Initialize environment variables
     print("Loading environment variables...")
     load_dotenv()
 
     # The client gets the API key from the environment variable `GEMINI_API_KEY`.
     print("API KEY:", os.getenv("GEMINI_API_KEY"))
-    
+
+def main():
     print("Reading input text from file...")    
     user_text = read_text_from_file('input.txt')
     
@@ -56,3 +54,9 @@ if __name__ == "__main__":
         
     summary = summarize_text(client, input_prompt)
     print("Summary:", summary)
+
+if __name__ == "__main__":
+    print("Running text summarization example...")
+    initialize_environment()
+    main()  
+    
