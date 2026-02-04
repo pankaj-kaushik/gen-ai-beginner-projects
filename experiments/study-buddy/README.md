@@ -74,16 +74,6 @@ You are an expert Study Buddy.
 ```
 
 ## 📌 Sample Output
-```bash
---- Welcome to your AI Study Buddy! ---
-Loading environment variables...
-API KEY: AIzaSyB9AjLbs6nsHqe58uZM2BE8oqSrU0j1uo8
-What concept would you like to learn today? what is AI
-
-Analyzing 'what is AI'... Please wait.
-
-Creating Gen AI client...
-------------------------------
 Hey there! I'm your **Study Buddy**, and I’m here to help you understand the amazing world of AI. Let
 
 ### 1. What is AI?
@@ -168,7 +158,6 @@ makes the score go up. Eventually, the AI says, *"I've got this!"* and starts pl
 **Answers:**
 *Q1: B | Q2: A*
 *Q1: B | Q2: A*
-```
 
 ## ✨ Future Enhancements
 - Difficulty level selection (Beginner/Intermediate/Advanced)
