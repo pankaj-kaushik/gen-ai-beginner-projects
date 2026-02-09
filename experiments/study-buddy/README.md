@@ -17,11 +17,11 @@ This project is ideal for:
 - Learn faster with beginner-friendly examples
 
 ## 🧩 Use Cases
-✅ Students learning new subjects  
-✅ Software engineers learning new technologies  
-✅ Interview preparation  
-✅ Quick concept revision  
-✅ Self-learning and curiosity-based exploration
+- Students learning new subjects  
+- Software engineers learning new technologies  
+- Interview preparation  
+- Quick concept revision  
+- Self-learning and curiosity-based exploration
 
 ## ⚙️ Setup Instructions
 ### Step 1: Clone the Repository
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 ### Step 5: Create .env File
 - Create a file named ```.env``` in the root directory and update the Gemini API Key
 - Note: You can use ```.env.example``` file and rename it to ```.env```
-⚠️ Never commit .env to GitHub.
+- ⚠️ Never commit .env to GitHub.
 
 ## ▶️ How to Run the Project
 ### Run main.py

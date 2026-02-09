@@ -71,7 +71,7 @@ def initialize_environment():
     load_dotenv()
 
     # The client gets the API key from the environment variable `GEMINI_API_KEY`.
-    print("API KEY:", os.getenv("GEMINI_API_KEY"))
+    # print("API KEY:", os.getenv("GEMINI_API_KEY"))
 
 def explain_concept(client, prompt):
     """
