@@ -96,7 +96,7 @@ response = client.models.generate_content(
 ```
 
 ## 📌 Sample Output
-```python
+```powershell
 --- Welcome to your Text Summarizer Writer! ---
 Reading input text from file...
 Prompt Used...
