@@ -87,7 +87,7 @@ def basic_summary(client, content):
         print(f"Error: {error_msg}")
         return error_msg
 
-def professional_summary(client, prompt, content):
+def professional_summary(client, user_prompt):
     """
     Generates a professional summary using the Gemini API with system instructions.
     
@@ -108,7 +108,7 @@ def professional_summary(client, prompt, content):
     try:
         response = client.models.generate_content(
             model=TARGET_MODEL,
-            contents=f"{prompt}{content}"
+            contents=f"{user_prompt}"
         )
         return response.text
     except ValueError as ve:
@@ -172,8 +172,8 @@ def get_prompt():
     Returns:
         str: A prompt string describing the desired summarization style.
     """
-    prompt = f"You are a professional editor. Summarize the following text in simple language.\nUse 4-5 bullet points.\nMake it easy for beginners to understand.\n"
-    return prompt
+    user_prompt = f"You are a professional editor. Summarize the following text in simple language.\nUse 4-5 bullet points.\nMake it easy for beginners to understand.\n"
+    return user_prompt
 
 
 def main():
@@ -204,7 +204,7 @@ def main():
     print("Basic Summary:\n", basic_summary_output)
 
     print("Generating Professional summary...")
-    professional_summary_output = professional_summary(client, input_prompt, user_text)
+    professional_summary_output = professional_summary(client, input_prompt)
     print("Professional Summary:\n", professional_summary_output)
 
 if __name__ == "__main__":

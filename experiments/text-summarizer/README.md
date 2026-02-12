@@ -69,10 +69,11 @@ Copy and past content of your blog post or article in input.txt file
 ```bash
 python main.py
 ```
-## 🧠 Prompt Used
-We used two types of prompting techniques in this application.
+## 🧠 Prompt Engineering Used
+We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
+
 ### Zero-Shot Prompting
-In basic_summary() method, we passed prompt **Summarize this in one line :**  directly without mentioning any example of how good summary looks like. 
+In the `basic_summary()` method, the instruction **"Summarize this in one line"** is passed directly to the model without additional context or examples. This approach relies entirely on the model's pre-trained knowledge of effective summarization, providing minimal guidance on both the desired format and quality standards.
 
 ```python
 response = client.models.generate_content(
@@ -81,9 +82,9 @@ response = client.models.generate_content(
 ```
 
 ### Role Prompting
-In professional_summary() method, we passed role based prompt directly along with the user content.
+In the `professional_summary()` method, we provide a persona as part of the prompt to guide the model's behavior. By instructing the AI to act as a professional editor, we establish a contextual framework that influences its vocabulary, level of formality, and overall approach to processing the input text.
 
-Prompt
+Prompt Used
 ```text
 You are a professional editor. Summarize the following text in simple language.\nUse 4-5 bullet points.\nMake it easy for beginners to understand.
 ```
@@ -91,7 +92,7 @@ You are a professional editor. Summarize the following text in simple language.\
 ```python
 response = client.models.generate_content(
             model=TARGET_MODEL,
-            contents=f"{prompt}{content}"
+            contents=f"{user_prompt}"
         )
 ```
 
