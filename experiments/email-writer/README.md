@@ -4,13 +4,13 @@ An AI-powered Email and Message Writing Assistant built using **Python** and **G
 This tool helps users generate professional, friendly, or persuasive emails/messages instantly based on purpose, tone, and key points.
 
 
-This project helps learners quickly understand difficult topics without technical jargon.
+This project helps learners quickly create email/message without any expertise.
 
 This project is ideal for:
 - Students 📚
-- Working professionals 👨‍💻
+- Marketing professionals 👨‍💻
 - Content creators ✍️
-- Anyone who wants quick insights from long articles
+- Anyone who wants to create message quickly
 
 ## 🚀 What This Project Does
 - Generate professional emails/messages using AI
@@ -80,29 +80,11 @@ python main.py
 We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
 
 ### Zero-Shot Prompting
-In `create_email_prompt()` method we passed the instruction in `user_prompt` but didn't mention any specific examples. The code tells the AI **what** to do (write an email) and **how** to format it (Subject/Body), but it gives zero finished examples of a "good" email for the AI to copy. It relies entirely on the AI's pre-existing knowledge of what a professional email looks like.
+In `create_email_prompt()` method we passed the instruction in `user_prompt` (see below) but didn't mention any specific examples. The code tells the AI **what** to do (write an email) and **how** to format it (Subject/Body), but it gives zero finished examples of a "good" email for the AI to copy. It relies entirely on the AI's pre-existing knowledge of what a professional email looks like.
 
-```python
-user_prompt = f"""
-    Write a {tone} email/message to {recipient} regarding '{purpose}'.
-    Key points to include: 
-    {key_points}.
-    
-    RESPONSE FORMAT:
-    Please provide the response in the following format:
-    Subject: [Subject Line]
-    Body: [Email Body]
-
-    Guidelines
-    - Keep language natural and human-like
-    - Maintain clarity and professionalism
-    - Add proper greeting and closing
-    - Keep it concise but complete
-    Generate only the final email/message.
-```
 
 ### Structured Prompting
-In `create_email_prompt()` method we passed the instruction in `user_prompt` that dictate the organization of the input and the exact layout of the output.
+In `create_email_prompt()` method we passed the instruction in `user_prompt` (see below) that dictate the organization of the input and the exact layout of the output.
 Instead of writing a long, conversational sentence, we used **labels** and **delimiters** to organize the information.
 
 - **Input Structuring:** Using headers like KEY POINTS TO INCLUDE: helps the AI distinguish between the "context" (who the email is for) and the "content" (what must be said).
@@ -178,7 +160,8 @@ Best regards,
 - Hindi/Multi-language explanation support
 - Chat-style conversation 
 - Add Streamlit web UI
-- Save summaries to file (text/pdf)
+- Save generated emails/message to file (text/pdf)
+- Auto reply generator
 
 
 ## Contributing
