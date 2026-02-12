@@ -64,7 +64,7 @@ pip install -r requirements.txt
 
 ## ▶️ How to Run the Project
 ### Step 1: Update ```input.txt``` File
-Copy and past content of your blog post or article in input.txt file
+Copy and paste content of your blog post or article in input.txt file
 ### Step 2: Run main.py
 ```bash
 python main.py
