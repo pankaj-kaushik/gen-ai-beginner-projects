@@ -99,16 +99,12 @@ python main.py
 ## 🧠 Prompt Engineering Used
 We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
 
-### Role Prompting
-In `create_user_prompt()` method we passed the instruction in `user_prompt` (see below) but didn't mention any specific examples. The code tells the AI **what** to do (Improve the following resume professionaly.) and **instructions** to generate required information, but it gives zero finished examples of a "good" rfor the AI to copy. It relies entirely on the AI's pre-existing knowledge of what a good explanation looks like.
-
 
 ### Structured Prompting
 In `create_user_prompt()` method we passed the instruction in `user_prompt` (see below) that dictates the organization of the input and the exact layout of the output. We provided explicit structured instructions with numbered items (1, 2, 3) to ensure the AI generates organized, multi-faceted output covering key strengths, improvement areas, and ATS compatibility. We used clear section headers like ```Resume content:``` to separate instructions from the actual resume data. We also applied **context injection** by dynamically embedding the resume content into the prompt template.
 
 ```python
 user_prompt = f"""
- user_prompt = f"""
 
         Improve the following resume professionaly.
         Also provide:
