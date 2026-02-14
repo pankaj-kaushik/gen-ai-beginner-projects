@@ -62,6 +62,7 @@ Write a concise executive summary of the following article:
 """
 ONE_LINE_PROMPT = """
 Summarize the article in one single impactful sentence:
+"""
 ```
 ## 📌 Sample Output
 ```powershell
@@ -95,10 +96,3 @@ Artificial intelligence is a transformative force redefining human potential acr
 - Choose summary length (short / medium / detailed)
 - Language selection (English / Hindi)
 - Save summaries to file
-
-## Contributing
-Feel free to fork this repo, improve it, and submit a pull request 🚀
-
-## 🙌 Acknowledgements
-- Google Gemini LLM
-- Open-source Python community
