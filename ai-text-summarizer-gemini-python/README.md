@@ -17,7 +17,7 @@ It highlights how **prompt variations → output variations**, a foundational co
 After completing this project, you will understand
 - How to integrate **Gemini LLM APIs** using python
 - How **prompt design** affects LLM outputs
-- **Zero-Shot** style prompting
+- How to write **Zero-Shot** style prompting
 - Comparative prompt experimentation 
 
 ## 🏢 Industry Use Cases
@@ -51,7 +51,7 @@ python gemini-text-summarizer.py
 We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
 
 ### Zero-Shot Prompting
-In the `prompts.py` file, we have specified different prompt instruction that is passed directly to the model without additional context or examples. This approach relies entirely on the model's pre-trained knowledge of effective summarization, providing minimal guidance on both the desired format and quality standards.
+In the `gemini-text-summarizer.py` file, we have specified different prompt instruction that is passed directly to the model without additional context or examples. This approach relies entirely on the model's pre-trained knowledge of effective summarization, providing minimal guidance on both the desired format and quality standards.
 
 ```python
 BULLET_PROMPT = """

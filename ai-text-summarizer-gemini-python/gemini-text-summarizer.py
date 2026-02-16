@@ -1,15 +1,44 @@
+"""
+AI Text Summarizer using Google Gemini API
+
+This module provides functionality to generate multiple types of text summaries
+using the Google Gemini API. It supports three summarization styles:
+- Bullet point summary (5 key points)
+- Executive summary (concise professional summary)
+- One-line summary (single impactful sentence)
+
+Requirements:
+    - GEMINI_API_KEY environment variable must be set
+    - Internet connection for API calls
+    - Input text file in the project directory
+
+Example:
+    python gemini-text-summarizer.py
+"""
 
 import os
 from dotenv import load_dotenv
 from google import genai
-from prompts import BULLET_PROMPT, EXECUTIVE_PROMPT, ONE_LINE_PROMPT
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Constants
-TARGET_MODEL = "gemini-3-flash-preview"
-TARGET_FILE = "sample_article.txt"
+TARGET_MODEL = "gemini-3-flash-preview"  # Gemini model for text generation
+TARGET_FILE = "sample_article.txt"  # Input file containing text to summarize
+
+BULLET_PROMPT = """
+Summarize the following article into 5 bullet points:
+"""
+
+EXECUTIVE_PROMPT = """
+Write a concise executive summary of the following article:
+"""
+
+ONE_LINE_PROMPT = """
+Summarize the article in one single impactful sentence:
+"""
+
 
 def create_genai_client():
     """
@@ -24,7 +53,29 @@ def create_genai_client():
     return genai.Client()
 
 def create_summary(client, text, prompt_template):
+    """
+    Generates a summary of the given text using the Gemini API.
     
+    This function combines a prompt template with the input text and sends it to
+    the Gemini API for processing. The type of summary depends on the prompt_template
+    provided (bullet points, executive summary, or one-line summary).
+    
+    Args:
+        client (genai.Client): Authenticated Gemini API client.
+        text (str): The text content to be summarized.
+        prompt_template (str): The prompt instruction that defines the summary style.
+    
+    Returns:
+        str: The generated summary text from the API, or an error message if the
+             request fails.
+    
+    Raises:
+        ValueError: Invalid input or API configuration error.
+        AttributeError: API response format error.
+        ConnectionError: Connection issues with the Gemini API.
+        TimeoutError: API request exceeds timeout.
+        Exception: Any other unexpected errors during API communication.
+    """
     user_prompt = create_user_prompt(text, prompt_template)
     try:
         response = client.models.generate_content(
@@ -54,7 +105,22 @@ def create_summary(client, text, prompt_template):
         return error_msg
 
 def read_text_from_file(file_path):
-
+    """
+    Reads text content from a file.
+    
+    Supports both absolute and relative file paths. Relative paths are resolved
+    relative to the directory containing this script.
+    
+    Args:
+        file_path (str): The path to the text file. Can be absolute or relative
+                        to the script's directory.
+    
+    Returns:
+        str: The complete text content of the file.
+    
+    Raises:
+        FileNotFoundError: If the specified file does not exist at the given path.
+    """
     # If a relative path is provided, treat it as relative to this script's directory.
     if not os.path.isabs(file_path):
         base_dir = os.path.dirname(__file__)
@@ -67,28 +133,57 @@ def read_text_from_file(file_path):
         raise FileNotFoundError(f"Could not find input file at: {file_path}")
 
 def create_user_prompt(text, prompt_template):
+    """
+    Combines a prompt template with input text to create a complete user prompt.
+    
+    Concatenates the prompt template and text with a newline separator to form
+    the complete instruction for the Gemini API.
+    
+    Args:
+        text (str): The input text content to be summarized.
+        prompt_template (str): The instruction template for generating summaries.
+    
+    Returns:
+        str: The complete prompt combining template and text.
+    """
     user_prompt = f"{prompt_template}\n{text}" 
     return user_prompt
 
 def main():
+    """
+    Main entry point for the AI Text Summarizer application.
     
+    This function orchestrates the summarization workflow:
+    1. Reads input text from a file
+    2. Initializes the Gemini API client
+    3. Generates three different types of summaries:
+       - Bullet point summary (5 key points)
+       - Executive summary (professional concise summary)
+       - One-line summary (single impactful sentence)
+    4. Displays results to the user
+    """
     print("--- Welcome to your AI Text Summarizer! ---")
-    print("Reading input text from file...")    
+    print("Reading input text from file...")
     user_text = read_text_from_file(TARGET_FILE)
     
     print("Generating Basic summary...Please wait...")
     
+    # Initialize the Gemini API client
     client = create_genai_client()
+    
+    # Generate and display bullet point summary
     bullet_summary = create_summary(client, user_text, BULLET_PROMPT)
     print("\n--- Bullet Point Summary ---")
     print(bullet_summary)
 
+    # Generate and display executive summary
     executive_summary = create_summary(client, user_text, EXECUTIVE_PROMPT)
     print("\n--- Executive Summary ---")
     print(executive_summary)
 
-    one_line_summary = create_summary(client, user_text, ONE_LINE_PROMPT)
+    # Generate and display one-line summary
     print("\n--- One Line Summary ---")
+    one_line_summary = create_summary(client, user_text, ONE_LINE_PROMPT)
     print(one_line_summary)
 
 if __name__ == "__main__":
