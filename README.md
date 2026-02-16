@@ -211,6 +211,12 @@ Some experiments you may find or add
 - Teacher for kids (Math/Logic)
 
 
+## 🎓 Learning Resources
+- [Google Gemini Documentation](https://ai.google.dev/docs)
+- [Prompt Engineering Guide](https://www.promptingguide.ai/)
+- [Understanding Temperature & Top-P](https://huggingface.co/blog/how-to-generate)
+- [Python Best Practices](https://docs.python-guide.org/)
+
 ## ⚠️ Disclaimer
 - LLM APIs may incur cost
 - Outputs may vary due to model randomness
