@@ -266,16 +266,50 @@ Apps spring to life! 🚀
   - Safety filter validation
   - Output consistency checks
 
-## 🎓 Learning Resources
-- [Google Gemini Documentation](https://ai.google.dev/docs)
-- [Prompt Engineering Guide](https://www.promptingguide.ai/)
-- [Understanding Temperature & Top-P](https://huggingface.co/blog/how-to-generate)
+## 🐛 Troubleshooting
+## 🐛 Troubleshooting
 
-## 🛠️ Tech Stack
-- **Python 3.8+**
-- **Google Gemini API** (gemini-3-flash-preview model)
-- **python-dotenv** for environment management
-- **google-genai** SDK
+### Common Errors and Solutions
+
+1. **Error: ModuleNotFoundError**
+  - **Cause**: This error occurs when a required module is not installed.
+  - **Solution**: Ensure all dependencies are installed. Run:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. **Error: API Key Missing**
+  - **Cause**: The Gemini API key is not set or is incorrect.
+  - **Solution**: Make sure to set your API key in the environment variables or directly in the code:
+    ```python
+    import os
+    os.environ['GEMINI_API_KEY'] = 'your_api_key_here'
+    ```
+
+3. **Error: Invalid Temperature Value**
+  - **Cause**: The temperature value provided is outside the range of 0.0 to 1.0.
+  - **Solution**: Ensure the temperature is set within the valid range. For example:
+    ```python
+    temperature = 0.5  # Valid value
+    ```
+
+4. **Error: Connection Timeout**
+  - **Cause**: The application is unable to connect to the Gemini API.
+  - **Solution**: Check your internet connection and ensure the API service is operational. You can also increase the timeout settings in the API request.
+
+5. **Error: Unexpected Output Format**
+  - **Cause**: The response from the API does not match the expected format.
+  - **Solution**: Verify the API documentation for any changes in the response structure. Update your parsing logic accordingly.
+
+6. **Error: Permission Denied**
+  - **Cause**: The script does not have permission to access certain files or directories.
+  - **Solution**: Check the file permissions and ensure the script is run with the necessary privileges.
+
+7. **Error: KeyError in Output Evaluation**
+  - **Cause**: The output does not contain the expected keys.
+  - **Solution**: Add error handling to check for the presence of keys before accessing them in the evaluation function.
+
+If you encounter any other issues, please refer to the documentation or seek help from the community.
 
 ## 📝 Configuration Tips
 
