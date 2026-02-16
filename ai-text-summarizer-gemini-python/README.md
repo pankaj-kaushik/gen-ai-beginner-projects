@@ -224,7 +224,7 @@ Artificial intelligence is a transformative force redefining human potential acr
   - Legal brief generation
   - Technical documentation
   - Financial report summaries
-🔐 Enterprise Features
+- 🔐 Enterprise Features
   - User authentication
   - Usage tracking
   - API rate limiting
