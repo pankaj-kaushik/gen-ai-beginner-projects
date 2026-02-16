@@ -1,43 +1,96 @@
-# 🧠 AI Text Summarizer Using Gemini And Python
+# 📄 AI Text Summarizer Using Gemini And Python
 
 ## 📌 Introduction
-**AI-powered summarization** is a core capability used across research, legal, enterprise, and content platforms.
-This **beginner-friendly** project demonstrates how **prompt engineering** techniques can significantly influence the quality, length, and structure of generated summaries using the Gemini LLM and Python.
+Welcome to the **AI Text Summarizer** - your intelligent assistant for condensing large documents into digestible insights!
+This **beginner-friendly** project demonstrates how to leverage **Large Language Models (LLMs)** with **prompt engineering** techniques to generate multiple summary formats from a single text source.
+
+Instead of manually reading lengthy articles, this system allows you to:
+
+- 📍 **Extract key points** in bullet format for quick scanning
+- 📄 **Generate executive summaries** for professional contexts
+- ✨ **Create one-line summaries** for rapid comprehension
+- 🎯 **Compare outputs** to understand how prompt design influences results
+- 🔄 **Process any text** quickly and efficiently
+
+Perfect for beginners learning AI integration, Prompt Engineering, and building practical NLP applications!
 
 ## 🚀 What This Project Does
-This application generates multiple summaries of the same article using different prompt styles:
+- Reads text content from files automatically
+- Generates three distinct summary formats from the same content
+- Demonstrates how **prompt variations → output variations**
+- Handles errors gracefully with comprehensive exception handling
+- Provides a clean CLI interface for easy interaction
+- Uses Google's Gemini LLM for high-quality summarization
 
-- 📍 Bullet-point summary
-- 📄 Executive summary
-- ✨ One-line summary
+The tool generates three powerful summary types:
 
-It highlights how **prompt variations → output variations**, a foundational concept in real-world LLM systems.
+### 📍 Bullet Point Summary
+- Extracts **5 key points** from the article
+- Perfect for **quick reference** and presentations
+- Maintains essential information in scannable format
+- Great for **meeting notes** and study guides
+
+### 📄 Executive Summary
+- Provides a **concise professional overview**
+- Ideal for **business reports** and proposals
+- Captures main themes and conclusions
+- Perfect for **stakeholders** and decision-makers
+
+### ✨ One-Line Summary
+- Distills entire content into **one impactful sentence**
+- Great for **headlines** and quick sharing
+- Tests the model's ability to identify core message
+- Perfect for **social media** and abstracts
 
 ## 🎯 Learning Outcomes
-After completing this project, you will understand
-- How to integrate **Gemini LLM APIs** using python
-- How **prompt design** affects LLM outputs
-- How to write **Zero-Shot** style prompting
-- Comparative prompt experimentation 
+After completing this project, you will understand:
+- 🔌 How to integrate **Gemini LLM APIs** using Python
+- 📝 How **prompt design** affects LLM outputs
+- 🎯 How to implement **Zero-Shot prompting** techniques
+- 🔄 How to handle **file I/O** operations in Python
+- ⚠️ How to implement **error handling** for API calls
+- 🏗️ How to structure **modular, reusable code**
+- 🔐 How to manage **API keys** securely with environment variables
+- 🧪 **Comparative prompt experimentation** methodologies
+
+This project strengthens both **AI integration** skills and **practical software development** best practices.
 
 ## 🏢 Industry Use Cases
-- Research document summarization
-- Legal and compliance review
-- News aggregation systems
-- Enterprise knowledge-base summarization
-- Meeting transcript summarization 
+- 📚 **Research & Academia**
+  - Academic paper summarization
+  - Literature review automation
+  - Research digest generation
+
+- ⚖️ **Legal & Compliance**
+  - Contract review summaries
+  - Case law analysis
+  - Regulatory document processing
+
+- 📰 **Media & Publishing**
+  - News aggregation systems
+  - Content curation platforms
+  - Editorial workflow automation
+
+- 💼 **Enterprise & Business**
+  - Meeting transcript summarization
+  - Knowledge-base documentation
+  - Report generation
+  - Email digest creation
+
+- 🏥 **Healthcare**
+  - Medical record summarization
+  - Clinical trial documentation
+  - Patient history digests
+
+- 🎓 **Education & Training**
+  - Study material condensation
+  - Course content summaries
+  - Learning resource curation
 
 ## 🧩 Architecture & Sequence Flow
 ```text
-User -> CLI/Web Interface -> Document Reader (PDF/Text Parser) -> Prompt Builder -> Gemini LLM API -> Response Processor -> Formatted Output to User
+User -> CLI Interface -> File Reader -> Text Extraction -> Prompt Builder (3 types) -> Gemini LLM API -> Response Processor -> Formatted Output Display
 ```
-1. User uploads document (pdf/text)
-2. Application extract text from document
-3. System builds a structured prompt
-4. Prompt is sent to Gemini LLM API
-5. Gemini analyzes prompt and generates response
-6. Application processes and formats response
-7. Output displayed to user
 
 ## ▶️ How to Run the Project
 ### Step 1: Update ```sample_article.txt``` File
@@ -45,13 +98,13 @@ Copy and paste content of your article in ```sample_article.txt``` file
 
 ### Step 2: Run Application
 ```bash
-python gemini-text-summarizer.py
+python ai-text-summarizer.py
 ```
 ## 🧠 Prompt Engineering Used
 We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
 
 ### Zero-Shot Prompting
-In the `gemini-text-summarizer.py` file, we have specified different prompt instruction that is passed directly to the model without additional context or examples. This approach relies entirely on the model's pre-trained knowledge of effective summarization, providing minimal guidance on both the desired format and quality standards.
+In the `ai-text-summarizer.py` file, we have specified different prompt instruction that is passed directly to the model without additional context or examples. This approach relies entirely on the model's pre-trained knowledge of effective summarization, providing minimal guidance on both the desired format and quality standards.
 
 ```python
 BULLET_PROMPT = """
@@ -89,16 +142,22 @@ transparency and "explainable AI," supported by a high level of societal AI lite
 --- One Line Summary ---
 Artificial intelligence is a transformative force redefining human potential across every industry, requiring a critical balance between rapid technological innovation and the ethical accountability necessary to ensure a beneficial future for society.
 ```
+
 ## ✨ Future Enhancements
-- Add Streamlit web UI
-- Multi-document summarization
-- Support PDF / URL ingestion pipeline
-- Choose summary length (short / medium / detailed)
-- Language selection (English / Hindi)
-- Save summaries to file
+- 🌐 Add **Streamlit web UI**
+- 📄 Multi-document **summarization**
+- 🔄 Add **streaming response**
+- 📥 Support **PDF / URL ingestion pipeline**
+- 📏 Choose **summary length** (short / medium / detailed)
+- 🌍 **Language selection** (English / Hindi)
+- 💾 Save **summaries to file**
 
 ## Contributing
-Feel free to fork this repo, improve it, and submit a pull request 🚀
+💡 If you found this helpful...
+- ⭐ Star the repo
+- 🍴 Fork it
+- 🚀 Build on top of it & submit pull request
+- 📢 Share your AI story platform
 
 ## 🙌 Acknowledgements
 - Google Gemini LLM
