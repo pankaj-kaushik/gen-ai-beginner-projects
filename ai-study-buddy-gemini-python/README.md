@@ -277,8 +277,8 @@ An **Array** is just a **numbered list** of items sitting side-by-side.
 - 🎤 Voice Mode Integration
   - Speech-to-text input
   - Text-to-speech output
- - Hands-free learning
- - Accessibility features
+  - Hands-free learning
+  - Accessibility features
 - 📄 PDF Study Mode
   - Upload textbook chapters
   - Extract and explain key concepts
