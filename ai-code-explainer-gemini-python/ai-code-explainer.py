@@ -41,7 +41,6 @@ def create_genai_client() -> 'genai.Client':
     Returns:
         genai.Client: An authenticated GenAI client instance.
     """
-    print("Creating Gen AI client...")
     return genai.Client()
 
 def create_user_prompt(content: str) -> str:
