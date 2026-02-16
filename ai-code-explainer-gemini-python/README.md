@@ -102,7 +102,7 @@ This project strengthens both **AI integration** skills and **practical software
 ```text
 User -> CLI Interface -> File Reader -> Code Extraction -> Structured Prompt Builder -> Gemini LLM API (with System Instructions) -> Response Processor -> Formatted Analysis Display
 ```
-Detailed Flow:\
+**Detailed Flow:**
 
 1. Application starts - User launches the CLI application
 2. File reading - System reads Python code from data/code.py
@@ -276,7 +276,7 @@ This code implements the **bubble sort algorithm**, a simple comparison-based so
   - Markdown report generation
   - PDF export with syntax highlighting
   - Analysis history tracking
-🔄 Batch Processing
+- 🔄 Batch Processing
   - Analyze entire directories
   - Generate project-wide documentation
   - Compare multiple code versions
