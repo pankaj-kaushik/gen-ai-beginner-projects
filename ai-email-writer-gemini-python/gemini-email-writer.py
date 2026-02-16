@@ -25,26 +25,15 @@ import os
 from dotenv import load_dotenv
 from google import genai
 
+
 # Load environment variables from .env file
 load_dotenv()
 
 # Constants
 TARGET_MODEL = "gemini-3-flash-preview"
 
-def create_genai_client():
-    """
-    Initializes and returns a Google GenAI client.
-    
-    The client automatically uses the GEMINI_API_KEY from the environment
-    to authenticate with Google's API.
-    
-    Returns:
-        genai.Client: An authenticated GenAI client instance.
-    """
-    print("Creating Gen AI client...")
-    return genai.Client()
 
-def create_email_prompt(purpose, tone, recipient, key_points):
+def create_email_prompt(purpose: str, tone: str, recipient: str, key_points: str) -> str:
     """
     Constructs a structured prompt for generating personalized emails.
     
@@ -64,7 +53,7 @@ def create_email_prompt(purpose, tone, recipient, key_points):
              including the requested response format (Subject/Body).
     """
     # We use a system-style prompt to guide Gemini's behavior
-    user_prompt = f"""
+    email_prompt = f"""
     Write a {tone} email/message to {recipient} regarding '{purpose}'.
     Key points to include: 
     {key_points}.
@@ -81,7 +70,7 @@ def create_email_prompt(purpose, tone, recipient, key_points):
     - Keep it concise but complete
     Generate only the final email/message. 
     """
-    return user_prompt
+    return email_prompt
 
 def get_user_input():
     """
@@ -96,6 +85,18 @@ def get_user_input():
     recipient = input("Enter recipient details (e.g., friend, colleague, client): ")
     key_points = input("Enter key points to include (separated by commas): ")
     return purpose, tone, recipient, key_points
+
+def create_genai_client(model=TARGET_MODEL, config=None):
+    """
+    Initializes and returns a Google GenAI client.
+    
+    The client automatically uses the GEMINI_API_KEY from the environment
+    to authenticate with Google's API.
+    
+    Returns:
+        genai.Client: An authenticated GenAI client instance.
+    """
+    return genai.Client()
 
 def generate_email(client, prompt):
     """
