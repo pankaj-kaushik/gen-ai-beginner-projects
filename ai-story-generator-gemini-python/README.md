@@ -34,13 +34,18 @@ The AI internally follows a structured storytelling flow:
 All automatically generated using the **Gemini LLM.**
 
 ## 🎯 Learning Outcomes
-After completing this project, you will understand
-- 🧩 How to design **structured prompts**
-- 🧠 How to guide **LLM reasoning** step-by-step
-- 🎛️ How to control **creativity** with constraints
-- 🔐 How to integrate **Gemini API with Python**
-- 📏 How to manage **output format** and tone
-- 🛡️ How to design **safe AI** content for kids
+After completing this project, you will understand:
+- 🧩 How to design **structured prompts** with constraints and step-by-step instructions
+- 🧠 How to guide **LLM reasoning** using chain-of-thought prompting
+- 🎛️ How to control **creativity** with explicit constraints (tone, length, vocabulary)
+- 🔐 How to integrate **Google Gemini API** using the official Python SDK
+- 📏 How to manage **output format** and tone for specific audiences
+- 🛡️ How to design **safe AI** content for kids with age-appropriate controls
+- ⚠️ How to implement **comprehensive error handling** for API calls (ConnectionError, TimeoutError, ValueError)
+- 🔄 How to collect and validate **user inputs** through interactive CLI
+- 🏗️ How to structure **modular functions** for maintainability
+- 🔑 How to manage **API keys securely** using environment variables with dotenv
+
 This project strengthens both **Prompt Engineering** fundamentals and **LLM API integration** skills.
 
 ## 🏢 Industry Use Cases
@@ -63,37 +68,113 @@ This project strengthens both **Prompt Engineering** fundamentals and **LLM API 
 
 ## 🧩 Architecture & Sequence Flow
 ```text
-User -> CLI/Web Interface -> Collect User Inputs -> Prompt Builder -> Gemini LLM API -> Response Processor -> Formatted Output to User
+User -> CLI Interface -> Input Collection -> Prompt Builder -> GenAI Client -> Gemini API -> Error Handler -> Story Output
 ```
-1. Read user inputs through CLI
-2. System builds a structured prompt using user inputs
-3. Prompt is sent to Gemini LLM API
-4. Gemini analyzes prompt and generates response
-5. Application processes and formats response
-6. Output displayed to user
+**Detailed Flow:**
+1. **Application Start** - Display welcome message
+2. **User Input Collection** - `get_user_input()` collects 5 parameters:
+   - Character (hero)
+   - Genre
+   - Place
+   - Main idea/lesson
+   - Age group
+3. **Prompt Construction** - `create_story_prompt()` builds structured prompt with:
+   - Role definition ("professional children's story writer")
+   - Story parameters from user input
+   - 6-step internal reasoning instructions
+   - 4 explicit constraints (vocabulary, tone, length, content)
+4. **Client Initialization** - `create_genai_client()` creates authenticated GenAI client
+5. **API Call** - `generate_content()` sends prompt to Gemini 3 Flash Preview model
+6. **Error Handling** - Catches and handles:
+   - AttributeError (invalid response format)
+   - ValueError (invalid input)
+   - ConnectionError (network issues)
+   - TimeoutError (request timeout)
+   - Generic Exception (other errors)
+7. **Story Output** - Display generated story with visual separators
 
 ## ▶️ How to Run the Project
+
 ### Step 1: Run Application
 ```bash
-python gemini-story-generator.py
+python ai-story-generator.py
 ```
+
+### Step 2: Provide Story Details
+Follow the interactive prompts to enter:
+- Main character
+- Genre
+- Place/setting
+- Main idea or lesson
+- Target age group
+
 ## 🧠 Prompt Engineering Used
 We have used following prompt techniques to ensure AI behaves reliably. Here is the breakdown.
 
-### Structured Prompting
-In the `create-story-prompt()` method, we passed the instruction in `user_prompt` (see below) that dictate the organization of the input and the exact layout of the output.
-Instead of writing a long, conversational sentence, we used **labels** and **delimiters** to organize the information.
-
-### Chain-of-Thought Prompting
-In the `create-story-prompt()` method, we instruct the model to internally
-- Build Setting
-- Introduce Character
-- Add conflict
-- Create resolution
-- State - moral
-This improves coherence and story quality.
-
+### 1. Role-Based Prompting
+The prompt starts by assigning a specific role to the AI:
 ```python
+"You are a professional children's story writer."
+```
+**Benefits:**
+- Primes the model to adopt appropriate tone and style
+- Ensures consistency in narrative voice
+- Leverages the model's knowledge of professional storytelling
+
+### 2. Structured Prompting with Parameters
+The prompt uses **labeled inputs** to organize information clearly:
+```python
+Write a {genre} story for children aged {age_group}.
+Main Character: {hero}
+Place: {place}
+Main Idea/Lesson: {idea}
+```
+**Benefits:**
+- Clear separation of input parameters
+- Easy to modify individual components
+- Reduces ambiguity for the LLM
+
+### 3. Chain-of-Thought Prompting
+The prompt includes explicit step-by-step instructions:
+```python
+Follow these steps internally:
+1. Create a magical and engaging setting.
+2. Introduce the character with personality traits.
+3. Present a small problem or conflict.
+4. Show how the character solves the problem.
+5. End with a happy resolution.
+6. Clearly state the moral starting with 'Moral:'.
+```
+**Why This Works:**
+- Guides the model through narrative structure
+- Ensures logical story progression
+- Improves coherence and quality
+- Guarantees key story elements are included
+
+### 4. Constraint-Based Generation
+Explicit constraints control the output:
+```python
+Constraints:
+- Use vocabulary suitable for {age_group}.
+- Keep tone positive and warm.
+- Story length: 400-500 words.
+- Avoid scary or violent elements.
+```
+**Benefits:**
+- Ensures age-appropriate content
+- Controls story length
+- Maintains safe, positive messaging
+- Prevents inappropriate content
+
+### 5. Output Format Specification
+The prompt explicitly requests:
+- Specific moral statement format: `'Moral:'`
+- Clear story structure with beginning, middle, end
+- Consistent tone throughout
+
+### Complete Prompt Structure
+```python
+def create_story_prompt(hero: str, genre: str, place: str, idea: str, age_group: str) -> str:
     story_prompt = f"""
     You are a professional children's story writer.
 
@@ -117,7 +198,16 @@ This improves coherence and story quality.
     - Story length: 400-500 words.
     - Avoid scary or violent elements.
     """
+    return story_prompt
 ```
+
+### Key Prompt Engineering Principles Applied:
+✨ **Role Assignment**: Sets context and expertise level
+✨ **Structured Input**: Labeled parameters for clarity
+✨ **Chain-of-Thought**: Step-by-step reasoning guide
+✨ **Constraints**: Explicit boundaries for safe output
+✨ **Format Specification**: Clear expectations for structure
+
 ## 📌 Sample Output
 ```powershell
 --- Welcome to your AI Magic Storybox!! ---
@@ -150,6 +240,45 @@ When he returned, he shared the grapes with his friends. Soon, the whole forest 
 
 **Moral: Curiosity leads us to wonderful new discoveries and makes life an exciting adventure.**
 ```
+## 🐛 Troubleshooting
+Common Issues:
+
+**API Key Error:**
+```python
+Error: API key not set or invalid
+Solution: Create .env file with GEMINI_API_KEY=your_api_key_here
+```
+
+**Connection Error:**
+```python
+Error: Failed to connect to the API. Check your internet connection.
+Solution: Verify your internet connection and try again
+```
+
+**Timeout Error:**
+```python
+Error: Request timed out. Please try again.
+Solution: The API took too long to respond. Try again or check API status
+```
+
+**Invalid Response Format:**
+```python
+Error: Invalid response format from the API.
+Solution: This is an AttributeError. Try running the script again
+```
+
+**Invalid Input Value:**
+```python
+Invalid input value: [error details]
+Solution: Check that all inputs are properly formatted strings
+```
+
+**Generic Error:**
+```python
+An error occurred: [error details]
+Solution: Check the error message for specific details and verify your setup
+```
+
 ## ✨ Future Enhancements
 - 🖼️ Image Generation Integration
   - Generate illustrations per story scene
@@ -175,3 +304,8 @@ When he returned, he shared the grapes with his friends. Soon, the whole forest 
 ## 🙌 Acknowledgements
 - Google Gemini LLM
 - Open-source Python community
+
+---
+## 📝 Happy Story Writing! ✨
+
+Remember: Effective story generation starts with clear inputs and well-designed prompts. Experiment with different tones, characters, and morals to discover what works best for your audience and storytelling goals!
